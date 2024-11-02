@@ -27,7 +27,7 @@ const App = () => {
       }
 
       const response = await fetch('http://localhost:8000/upload', options)
-      const data = await response.json()
+      const data = await response.text()
 
     } catch (error) {
       console.error(error)
@@ -59,7 +59,7 @@ const App = () => {
       const response = await fetch('http://localhost:8000/gemini/', options)
       const data = await response.json()
       setResponse(data)
-      
+
     } catch (error) {
       console.error(error)
       setError("Something didn't work please try again")
