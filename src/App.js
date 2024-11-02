@@ -1,4 +1,3 @@
-import { response } from "express";
 import { useState } from "react";
 
 const App = () => {
@@ -27,7 +26,7 @@ const App = () => {
       }
 
       const response = await fetch('http://localhost:8000/upload', options)
-      const data = await response.text()
+      const data = await response.json()
 
     } catch (error) {
       console.error(error)
@@ -57,7 +56,7 @@ const App = () => {
         }
       }
       const response = await fetch('http://localhost:8000/gemini/', options)
-      const data = await response.json()
+      const data = await response.text()
       setResponse(data)
 
     } catch (error) {

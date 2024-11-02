@@ -55,7 +55,7 @@ p{
 }
 
 .input-container{
-    width: 100px;
+    width: 100%;
     display: flex;
     border-radius: 6px;
     overflow: hidden;
