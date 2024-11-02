@@ -102,4 +102,6 @@ p{
     box-sizing: border-box;
     font-size: 15px;
     font-weight: 200;
+    border-radius: 6px;
 }
+

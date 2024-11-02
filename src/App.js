@@ -80,13 +80,13 @@ const App = () => {
           {image && <img className="image" src={URL.createObjectURL(image)} />}
         </div>
 
-        <p className="extra-info">
+       {!response && <p className="extra-info">
           <span>
             <label htmlFor="files">Upload an image</label>
             <input onChange={uploadImages} id="files" accept="image/*" type="file" hidden />
           </span>
           ask questions about it.
-        </p>
+        </p>}
 
         <p>
           What do you want to know about the image?
@@ -104,7 +104,7 @@ const App = () => {
         </div>
 
         {error && <p>{error}</p>}
-        {response && <p>{response}</p>}
+        {response && <p className="answer">{response}</p>}
       </section>
     </div>
   );
