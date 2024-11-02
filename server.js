@@ -36,6 +36,30 @@ app.post('/upload',(req,res) =>{
     })
 })
 
+app.post('/gemini',async(req,res)=>{
+    try {
+
+        function fileToGenerativePath(path, mimeType)
+        {
+            return{
+                inlineData:{
+                    data: Buffer.from(fs.readFileSync(path)).toString("base64"),
+                    mimeType
+                }
+            }
+        }
+        const model = genAI.getGenerativeModel({model: "gemini-1.5-flash-latest"})
+        const prompt = req.body.message
+        const result = await model.generateContent([prompt, fileToGenerativePath(filePath, 'image/jpeg')])
+        const response = await result.response
+        const text = response.text()
+        res.send(text)
+        
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 app.listen(port,()=>{
     console.log(`Listening to port ${port}`)
 })
