@@ -9,6 +9,7 @@ app.use(cors())
 app.use(express.json())
 
 const {GoogleGenerativeAI} = require('@google/generative-ai')
+const { measureMemory } = require('vm')
 const port = 8000
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
@@ -34,6 +35,25 @@ app.post('/upload',(req,res) =>{
         }
         filePath = req.file.path
     })
+})
+
+app.post('/gemini-chat',async(req,res)=>{
+    try{
+        const model = genAI.getGenerativeModel({model: "gemini-1.5-flash-latest"})
+        const chat = model.startChat({
+            history:req.body.history,
+        })
+        const msg = req.body.message
+        const result = await chat.sendMessage(msg)
+        const response = await result.response
+        const text = response.text()
+        res.send(text)
+        // console.log(msg)
+        // console.log(text)
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 
 app.post('/gemini',async(req,res)=>{
