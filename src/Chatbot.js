@@ -66,7 +66,7 @@ const Chatbot = () =>{
 
     return(
         <div className='app'>
-        <div>
+        <div className='nav-links'>
           <Link className="link-to" to={'/chat-bot'}>Chatbot</Link>
           <Link className="link-to" to={'/'}>Imagebot</Link>
         </div>
